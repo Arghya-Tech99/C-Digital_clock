@@ -4,17 +4,19 @@
 
 void getTime(char*, int);
 int format_Choice(); 
-
-void getTime(char*);
+void fillDate(char*);
 
 int main() {
 
     int choice = format_Choice();
     char time[50];
+    char date[100];
 
     getTime(time, choice);
-
-    printf("Current time : %s", time); // Prints the current local time
+    fillDate(date);
+    printf("\n Current time : %s", time); // Prints the current local time
+    printf("\n Date : %s", date); // Prints the date
+    
     return 0;
 }
 
@@ -41,4 +43,13 @@ int format_Choice() {
     scanf("%d", &format);
 
     return format;
+}
+
+void fillDate(char* buffer) {
+    time_t rawTime; // declares a variable named rawTime of the data type time_t
+    struct tm *currentTime; // Declaring a structure name 'tm' and a pointer to this structure with the name 'currentTime'
+    time(&rawTime); // get the current calendar time and store that value in "rawTime" variable
+    currentTime = localtime(&rawTime); // Converts time value stored in "rawTime" into a local time format and assigns to structure
+
+    strftime(buffer, 100, "%A %B %d %Y", currentTime); // Formats the local time format into into string variable and displays date 
 }
