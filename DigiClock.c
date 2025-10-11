@@ -14,9 +14,9 @@ int main() {
 
     getTime(time, choice);
     fillDate(date);
-
     printf("\n Current time : %s", time); // Prints the current local time
     printf("\n Date : %s", date); // Prints the date
+    
     return 0;
 }
 
@@ -51,5 +51,5 @@ void fillDate(char* buffer) {
     time(&rawTime); // get the current calendar time and store that value in "rawTime" variable
     currentTime = localtime(&rawTime); // Converts time value stored in "rawTime" into a local time format and assigns to structure
 
-    strftime(buffer, 100, "%A %B %d %Y", currentTime);
+    strftime(buffer, 100, "%A %B %d %Y", currentTime); // Formats the local time format into into string variable and displays date 
 }
