@@ -1,10 +1,13 @@
 #include<stdio.h>
 #include<time.h>
 #include<string.h>
+#include<unistd.h>
+#include<stdlib.h>
 
 void getTime(char*, int);
 int format_Choice(); 
 void fillDate(char*);
+void clear_screen();
 
 int main() {
 
@@ -12,11 +15,16 @@ int main() {
     char time[50];
     char date[100];
 
-    getTime(time, choice);
-    fillDate(date);
-    printf("\n Current time : %s", time); // Prints the current local time
-    printf("\n Date : %s", date); // Prints the date
-    
+    while (1)
+    {
+        getTime(time, choice); // Gets the time according to user choice
+        fillDate(date); // Gets the current date
+        clear_screen();
+        printf("Current time : %s\n", time); // Prints the current local time
+        printf("Date : %s\n", date); // Prints the date
+        sleep(1); // System sleeps for 1 second
+        
+    }
     return 0;
 }
 
@@ -51,5 +59,13 @@ void fillDate(char* buffer) {
     time(&rawTime); // get the current calendar time and store that value in "rawTime" variable
     currentTime = localtime(&rawTime); // Converts time value stored in "rawTime" into a local time format and assigns to structure
 
-    strftime(buffer, 100, "%A %B %d %Y", currentTime); // Formats the local time format into into string variable and displays date 
+    strftime(buffer, 100, "%A %B %d %Y", currentTime);
+}
+
+void clear_screen() {
+    #ifdef _WIN32
+        system("cls"); // For Windows OS
+    #else
+        system("clear"); // For Unix-like systems (Linux, macOS)
+    #endif
 }
