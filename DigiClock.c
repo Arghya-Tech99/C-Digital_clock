@@ -5,8 +5,6 @@
 void getTime(char*, int);
 int format_Choice(); 
 
-void getTime(char*);
-
 int main() {
 
     int choice = format_Choice();
@@ -41,4 +39,5 @@ int format_Choice() {
     scanf("%d", &format);
 
     return format;
+
 }
