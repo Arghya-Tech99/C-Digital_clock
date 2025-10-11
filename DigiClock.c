@@ -5,6 +5,8 @@
 void getTime(char*, int);
 int format_Choice(); 
 
+void getTime(char*);
+
 int main() {
 
     int choice = format_Choice();
